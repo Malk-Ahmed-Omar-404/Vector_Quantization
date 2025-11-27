@@ -31,8 +31,8 @@ class Codebook:
         self.img_padded = np.pad(
             self.img_arr,
             ((0, pad_h), (0, pad_w), (0, 0)),
-            mode="constant",
-            constant_values=0
+            mode="edge",
+            # constant_values=0
         )
 
         self.padded_h, self.padded_w, _ = self.img_padded.shape
@@ -151,7 +151,7 @@ class Codebook:
 
         return labels_grid
 
-    @staticmethod
+    
     def decompress(labels_path, codebook_path, output_path):
         labels = np.array(json.load(open(labels_path)))
         codebook = np.array(json.load(open(codebook_path)))
